@@ -1,53 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Data;
-using MySql.Data;
-using MySql.Data.MySqlClient;
-using Microsoft.Graph;
-using Dapper;
-using DocumentFormat.OpenXml.Spreadsheet;
+using OkMooi.Pages;
 
 namespace OkMooi.Pages
 {
     public class IndexModel : PageModel
     {
-        public IDbConnection IDbConnection { get; private set; }
 
-        public IDbConnection Connect()
+        
+
+        [BindProperty] 
+        public User NewUser { get; set; } 
+        public void OnGet()
         {
-            string connectionstring = @"Server=127.0.0.1;
-                                        Port=3306;
-                                        Database=mydb;
-                                        Uid=root;
-                                        Pwd=;";
 
-            return new MySqlConnection(connectionstring);
+        }
+
+        public void OnPost()
+        {
+
+        }
+
+        
+        public IEnumerable<User> Users
+        {
+            get { return new Repository().Get(); }
+        }
+        public IActionResult OnPostCreate()
+        {
+            if (ModelState.IsValid)
+            {
+                var addedTodo = new Repository().AddUser(NewUser);
+                //do something useful with addedTodo
+            }
+
+            return Page();
         }
 
 
-
-
-        public List<Tables> Get()
-        {
-            using var connection = Connect();
-            var Tables = connection
-                .Query<Tables>("SELECT * FROM Tables");
-            return (List<Tables>)Tables;
-        }
-
-
-
-        public bool AddSimple(Todo todo)
-        {
-            using var connection = Connect();
-            int numRowEffected = connection.Execute(
-                @"INSERT INTO Todo (Description, Done) VALUES (@Description, @Done)"
-                , todo);
-            return numRowEffected == 1;
-        }
     }
 }

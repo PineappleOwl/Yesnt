@@ -1,8 +1,12 @@
 ﻿@page
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+
+@inject IWebHostEnvironment env
 
 <body>
 
@@ -35,4 +39,16 @@
         </table>
 
     </form>
+    
+    {
+
+         <form method="post" asp-page-handler="Create">
+             
+            <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username"  />
+            <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password"  />
+            <input type="checkbox" asp-for="NewUser.Admin" >
+            <button type="submit" >Registreer</button>
+
+        </form>
+    }
 </body>
