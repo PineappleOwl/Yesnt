@@ -39,6 +39,27 @@ namespace OkMooi.Pages
             return addedTodo;
         }
 
+        public bool LogInUser(string usernamee, string passworde)
+        {
+            using var connection = Connect();
+
+
+
+            string query = "SELECT password FROM user  WHERE Username = @Username AND password = @pass";
+
+            User updatedUser = connection.QuerySingle<User>(query, connection);
+            
+
+
+            bool output = false;
+
+            
+
+            return output;
+        }
+
+
+
 
     }
 }

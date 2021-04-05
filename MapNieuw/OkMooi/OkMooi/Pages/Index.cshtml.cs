@@ -18,10 +18,7 @@ namespace OkMooi.Pages
 
         }
 
-        public void OnPost()
-        {
-
-        }
+        
 
         
         public IEnumerable<User> Users
@@ -38,6 +35,13 @@ namespace OkMooi.Pages
 
             return Page();
         }
+
+        
+
+       
+        
+
+
 
 
     }

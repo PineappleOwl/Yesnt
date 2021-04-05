@@ -11,44 +11,26 @@
 <body>
 
 
-    <h3>inloggen</h3>
+    <h3>Login</h3>
+    <form method="post" asp-page-handler="Create">
 
-    <form action="Lijst.html" method="POST">
-
-        <table>
-            <tr>
-                <td>Gebruikersnaam:</td>
-                <td>
-                    <input type="text" name="user" placeholder="Gebruikersnaam ">
-                </td>
-            </tr>
-
-            <tr>
-                <td>Wachtwoord:</td>
-                <td>
-                    <input type="text" name="user_pass" placeholder="Wachtwoord">
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <input type="submit" name="submit" value="log in">
-                </td>
-            </tr>
-
-        </table>
+        <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
+        <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" />
+        <button type="submit">Log in</button>
 
     </form>
-    
-    {
 
-         <form method="post" asp-page-handler="Create">
-             
-            <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username"  />
-            <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password"  />
-            <input type="checkbox" asp-for="NewUser.Admin" >
-            <button type="submit" >Registreer</button>
 
-        </form>
-    }
+    <h3>Register</h3>
+
+
+    <form method="post" asp-page-handler="Create">
+
+        <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
+        <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" />
+        <input type="checkbox" asp-for="NewUser.Admin">
+        <button type="submit">Register</button>
+
+    </form>
+
 </body>
