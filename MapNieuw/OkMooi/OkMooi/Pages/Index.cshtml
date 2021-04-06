@@ -12,14 +12,14 @@
 
 
     <h3>Login</h3>
-    <form method="post" asp-page-handler="Create">
+
+    <form method="post" asp-page-handler="ProcessLogin">
 
         <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
         <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" />
-        <button type="submit">Log in</button>
+        <button type="submit">Log In</button>
 
     </form>
-
 
     <h3>Register</h3>
 
