@@ -1,8 +1,11 @@
 ﻿
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OkMooi.Pages;
 
 
 
@@ -12,6 +15,8 @@ namespace OkMooi.Pages
     {
 
         
+        
+            
 
         [BindProperty] 
         public User NewUser { get; set; } 
@@ -50,6 +55,8 @@ namespace OkMooi.Pages
                 var loggedinUser = new Repository().LogInUser(NewUser);
                 if(loggedinUser)
                 {
+                    
+                    HttpContext.Session.SetString("LoginSession", "Yesnt");
                     return RedirectToPage("Kloot");
                 }
                 else

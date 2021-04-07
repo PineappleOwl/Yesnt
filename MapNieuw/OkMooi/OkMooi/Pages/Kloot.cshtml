@@ -5,10 +5,16 @@
 
 <head>
     <link href="StyleSheet.css" rel="Stylesheet.css" type="text/css" />
+
     
     <h1>Wall-E</h1>
 </head>
 <body>
+
+    @if (@Model.aars != null)
+    {
+        <button asp-page="Kloot">Poep</button>
+    }
 
     <img src="https://i.picsum.photos/id/100/2500/1656.jpg?hmac=gWyN-7ZB32rkAjMhKXQgdHOIBRHyTSgzuOK6U0vXb1w" alt="Beach" class="center" height="450">
 
