@@ -55,7 +55,7 @@ namespace OkMooi.Pages
                 var loggedinUser = new Repository().LogInUser(NewUser);
                 if(loggedinUser)
                 {
-                    
+                                                                            
                     HttpContext.Session.SetString("LoginSession", "Yesnt");
                     return RedirectToPage("Kloot");
                 }

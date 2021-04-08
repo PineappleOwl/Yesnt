@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using OkMooi.Pages;
 
-namespace OkMooi.Pages
+namespace OkMooi
 {
     public class Repository
     {
@@ -20,12 +20,16 @@ namespace OkMooi.Pages
             );
         }
 
-        public IEnumerable<User> Get()
+        
+
+        public User Get(string Username)
         {
             using var connection = Connect();
-            var Users = connection
-                .Query<User>("SELECT * FROM User");
-            return Users;
+            var user = connection.QuerySingleOrDefault<User>(
+                "SELECT * FROM Todo WHERE Username = @Username",
+
+                new { username = Username });
+            return user;
         }
 
 
@@ -34,9 +38,14 @@ namespace OkMooi.Pages
         {
             using var connection = Connect();
             User addedTodo = connection.QuerySingleOrDefault<User>(
-                @"INSERT INTO User (Username, Admin, password) VALUES (@Username, 1, @password)"
+                @"INSERT INTO User (Username, Admin, password, bookmark) VALUES (@Username, 1, @password, kloot)"
                 , user);
             return addedTodo;
+        }
+
+        internal IEnumerable<User> Get()
+        {
+            throw new NotImplementedException();
         }
 
         public bool LogInUser(User user)
@@ -55,6 +64,10 @@ namespace OkMooi.Pages
             }
             
         }
+
+        
+
+
 
 
 

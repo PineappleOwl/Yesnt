@@ -10,10 +10,17 @@
     <h1>Wall-E</h1>
 </head>
 <body>
+    
 
     @if (@Model.aars != null)
     {
-        <button asp-page="Kloot">Poep</button>
+        <form method="post" asp-page-handler="Bookmark">
+
+
+            <input type="checkbox" asp-for="bookmark" />
+            <button type="submit">Log In</button>
+
+        </form>
     }
 
     <img src="https://i.picsum.photos/id/100/2500/1656.jpg?hmac=gWyN-7ZB32rkAjMhKXQgdHOIBRHyTSgzuOK6U0vXb1w" alt="Beach" class="center" height="450">

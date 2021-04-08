@@ -17,5 +17,7 @@ namespace OkMooi.Pages
         public string Password { get; set; }
         
         public string Admin { get; set; }
+
+        public string Bookmark { get; set; }
     }
 }
