@@ -38,7 +38,7 @@ namespace OkMooi
         {
             using var connection = Connect();
             User addedTodo = connection.QuerySingleOrDefault<User>(
-                @"INSERT INTO User (Username, Admin, password, bookmark) VALUES (@Username, 1, @password, kloot)"
+                @"INSERT INTO User (Username, Admin, password) VALUES (@Username, 1, @password)"
                 , user);
             return addedTodo;
         }
