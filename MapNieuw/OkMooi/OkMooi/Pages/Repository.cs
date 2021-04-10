@@ -15,8 +15,8 @@ namespace OkMooi
         {
             return new MySqlConnection(
                 "Server=127.0.0.1;Port=3306;" +
-                "Database=Shitfuck;" +
-                "Uid=root;Pwd=12345;"
+                "Database=legoyoda;" +
+                "Uid=root;Pwd=root;"
             );
         }
 
@@ -38,7 +38,7 @@ namespace OkMooi
         {
             using var connection = Connect();
             User addedTodo = connection.QuerySingleOrDefault<User>(
-                @"INSERT INTO User (Username, Admin, password, bookmark) VALUES (@Username, 1, @password, kloot)"
+                @"INSERT INTO User (Username, Admin, password) VALUES (@Username, 1, @password)"
                 , user);
             return addedTodo;
         }
@@ -65,9 +65,17 @@ namespace OkMooi
             
         }
 
-        
+        //to add a comment
+        public Comments AddComment(Comments comment)
+        {
+            comment.Time = DateTime.Now.ToString("HH:mm dd MMM yyyy");
 
-
+            using var connection = Connect();
+            Comments addedComment = connection.QuerySingleOrDefault<Comments>(
+                @"INSERT INTO Comments (messagename, postedtime, username, Comment) VALUES (@Name, @Time, 'placeholder', @Comment)"
+                , comment);
+            return addedComment;
+        }
 
 
 

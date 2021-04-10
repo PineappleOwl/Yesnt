@@ -1,0 +1,24 @@
+﻿@page
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
+@model Comments_page
+@{
+    ViewData["Title"] = "Comment Page";
+}
+
+@inject IWebHostEnvironment env
+
+<body>
+
+    <h3>Post comment</h3>
+
+
+    <form method="post" asp-page-handler="Create">
+
+        <input type="text" placeholder="Naam" asp-for="NewComment.Name" />
+        <input type="text" placeholder="Comment" asp-for="NewComment.Comment" />
+        <button type="submit">Post</button>
+
+    </form>
+
+</body>
