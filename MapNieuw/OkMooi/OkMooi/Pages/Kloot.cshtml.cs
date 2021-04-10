@@ -31,7 +31,7 @@ namespace OkMooi.Pages
         {
             using var connection = Connect();
             User bookmark = connection.QuerySingleOrDefault<User>(@"
-                UPDATE user SET bookmark = 'Klotezooi' WHERE username= @Username", user
+                UPDATE user SET bookmark = 'Klotezooi' WHERE username= Hopelijk", user
             );
 
             return bookmark;
