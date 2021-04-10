@@ -15,8 +15,8 @@ namespace OkMooi
         {
             return new MySqlConnection(
                 "Server=127.0.0.1;Port=3306;" +
-                "Database=Shitfuck;" +
-                "Uid=root;Pwd=12345;"
+                "Database=legoyoda;" +
+                "Uid=root;Pwd=root;"
             );
         }
 

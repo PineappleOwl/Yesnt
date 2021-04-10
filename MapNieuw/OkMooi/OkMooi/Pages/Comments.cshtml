@@ -16,7 +16,9 @@
     <form method="post" asp-page-handler="Create">
 
         <input type="text" placeholder="Naam" asp-for="NewComment.Name" />
-        <input type="text" placeholder="Comment" asp-for="NewComment.Comment" />
+        <br />
+        <br />
+        <textarea placeholder="Comment" cols="50" rows="10" asp-for="NewComment.Comment"></textarea>
         <button type="submit">Post</button>
 
     </form>
