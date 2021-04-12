@@ -14,7 +14,7 @@
 
     @if (@Model.aars != null)
     {
-        <form method="post" asp-page-handler="Bookmark">
+        <form method="post" asp-for=user asp-page-handler="Boekjes">
 
 
             <input type="checkbox" asp-for="bookmark" />

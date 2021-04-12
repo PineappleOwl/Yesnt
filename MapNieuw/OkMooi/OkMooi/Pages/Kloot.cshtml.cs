@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,8 @@ namespace OkMooi.Pages
         [BindProperty] public string aars { get; set; }
         [BindProperty] public string bookmark { get; set; }
         [BindProperty] public User apen { get; set; }
+        [BindProperty] public User Bookmark { get; set; }
+        [BindProperty] public string doos { get; set; }
 
         private IDbConnection Connect()
         {
@@ -27,25 +30,58 @@ namespace OkMooi.Pages
             );
         }
 
+        public void OnGet(string bookmarks)
+        {
+
+            doos = HttpContext.Session.GetString("LoginSession");
+            User stront = new Repository().Get(doos);
+            if (new Repository().LogInUser(stront))
+            {
+                Repository uname = new Repository();
+                User user = uname.GetUserByUserID(doos);
+
+                HttpContext.Session.SetString("LoginSesion", user.Username.ToString());
+            }
+            string buttonpoep = HttpContext.Session.GetString("LoginSession");
+            aars = buttonpoep;
+        }
+                                
         public User Bookmarkp(User user)
         {
             using var connection = Connect();
             User bookmark = connection.QuerySingleOrDefault<User>(@"
-                UPDATE user SET bookmark = 'Klotezooi' WHERE username= Hopelijk", user
+                UPDATE user SET bookmark = 'Molshoop' WHERE username= @Username", user
             );
 
             return bookmark;
         }
 
-
-
-        public void OnGet(string bookmarks)
+        public IActionResult OnPostBoekjes()
         {
+            if (!ModelState.IsValid)
+            {
+                new Kloot().Bookmarkp(Bookmark);
+                return RedirectToPage("Kloot");
+                //do something useful with addedTodo
+            }
             
-            string buttonpoep = HttpContext.Session.GetString("LoginSession");
-            aars = buttonpoep;
+
+            return Page();
         }
-                                                                                                                          
+
+        public void OnPostVerifyUser()
+        {
+            doos = HttpContext.Session.GetString("LoginSession");
+            User stront = new Repository().Get(doos);
+            if (new Repository().LogInUser(stront))
+            {
+                Repository uname = new Repository();
+                User user = uname.GetUserByUserID(doos);
+
+                HttpContext.Session.SetString("LoginSesion", user.Username.ToString());
+            }
+        }
+
         public IActionResult OnPostBookmark()
         {
             apen.Username = bookmark;
@@ -54,13 +90,13 @@ namespace OkMooi.Pages
             {
                 
                 
-                new Kloot().Bookmark(bookmark);              
+                new Kloot().Bookmarkg(bookmark);              
             }
 
             return Page();
         }
 
-        private IActionResult Bookmark(string bookmark)
+        private IActionResult Bookmarkg(string bookmark)
         {
             apen.Username = bookmark;
             var boekmark = new Kloot().Bookmarkp(apen);

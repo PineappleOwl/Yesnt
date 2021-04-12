@@ -6,11 +6,17 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using System.Data;
 using OkMooi.Pages;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OkMooi
 {
+
+
     public class Repository
+
     {
+        [BindProperty]
+        User UserById { get; set; }
         private IDbConnection Connect()
         {
             return new MySqlConnection(
@@ -26,7 +32,7 @@ namespace OkMooi
         {
             using var connection = Connect();
             var user = connection.QuerySingleOrDefault<User>(
-                "SELECT * FROM Todo WHERE Username = @Username",
+                "SELECT * FROM User WHERE Username = @Username",
 
                 new { username = Username });
             return user;
@@ -46,6 +52,23 @@ namespace OkMooi
         internal IEnumerable<User> Get()
         {
             throw new NotImplementedException();
+        }
+
+       
+
+        public User GetUserByUserID(string username)
+        {
+            var connection = Connect();
+            List<User> usercheckers = connection.Query<User>(sql : "SELECT * FROM user").ToList();
+            foreach (var user in usercheckers)
+            {
+                if(user.Username == username)
+                {
+                    UserById = user;
+                    return UserById;
+                }
+            }
+            return null;
         }
 
         public bool LogInUser(User user)
@@ -76,9 +99,6 @@ namespace OkMooi
                 , comment);
             return addedComment;
         }
-
-
-
 
     }
 }
