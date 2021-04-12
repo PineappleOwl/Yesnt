@@ -7,7 +7,9 @@ using System.ComponentModel.DataAnnotations;
 namespace OkMooi.Pages
 {
     public class Comments
+
     {
+
         [Required(), MinLength(2), MaxLength(50)]
 
         public string Name { get; set; }
@@ -17,6 +19,7 @@ namespace OkMooi.Pages
         public string Comment { get; set; }
 
         public string Time { get; set; }
+
 
     }
 }

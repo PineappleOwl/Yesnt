@@ -19,6 +19,7 @@ namespace OkMooi.Pages
 
         [BindProperty]
         public Comments NewComment { get; set; }
+        public Comments DisplayedComment { get; set; }
 
         public void OnGet()
         {
@@ -30,11 +31,13 @@ namespace OkMooi.Pages
             if (ModelState.IsValid)
             {
                 var addedComment = new Repository().AddComment(NewComment);
-                //do something useful with addedTodo
+                var displayedComment = new Repository().displayComment(DisplayedComment);
+                
             }
 
             return Page();
         }
+
 
 
     }
