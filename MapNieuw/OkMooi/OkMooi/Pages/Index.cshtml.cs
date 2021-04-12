@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -56,7 +57,7 @@ namespace OkMooi.Pages
                 if(loggedinUser)
                 {
                     
-                    HttpContext.Session.SetString("LoginSession", "Yesnt");
+                    HttpContext.Session.SetString("LoginSession", NewUser.Username);
                     return RedirectToPage("Kloot");
                 }
                 else
@@ -68,7 +69,18 @@ namespace OkMooi.Pages
             return Page();
         }
 
-       
+        public void OnPostVerifyUser()
+        {
+            if (new Repository().LogInUser(NewUser))
+            {
+                Repository uname = new Repository();
+                User user = uname.GetUserByUserID(NewUser.Username);
+                
+                HttpContext.Session.SetString("LoginSesion", user.Username.ToString());
+            }
+        }
+
+
 
 
 
