@@ -45,19 +45,23 @@ namespace OkMooi.Pages
             string buttonpoep = HttpContext.Session.GetString("LoginSession");
             aars = buttonpoep;
         }
-                                
+                                                                               
         public User Bookmarkp(User user)
         {
             using var connection = Connect();
             User bookmark = connection.QuerySingleOrDefault<User>(@"
                 UPDATE user SET bookmark = 'Molshoop' WHERE username= @Username", user
             );
-
+             
             return bookmark;
         }
 
         public IActionResult OnPostBoekjes()
         {
+            
+            apen.Username = bookmark;
+            Bookmark.Username = HttpContext.Session.Get("LoginSession").ToString();
+            
             if (!ModelState.IsValid)
             {
                 new Kloot().Bookmarkp(Bookmark);
@@ -85,7 +89,7 @@ namespace OkMooi.Pages
         public IActionResult OnPostBookmark()
         {
             apen.Username = bookmark;
-            var boekmark = new Kloot().Bookmarkp(apen);
+            var boekmark = new Kloot().Bookmarkp(Bookmark);
             if (ModelState.IsValid)
             {
                 
@@ -99,7 +103,7 @@ namespace OkMooi.Pages
         private IActionResult Bookmarkg(string bookmark)
         {
             apen.Username = bookmark;
-            var boekmark = new Kloot().Bookmarkp(apen);
+            var boekmark = new Kloot().Bookmarkp(Bookmark);
             return Page();
             
         }
