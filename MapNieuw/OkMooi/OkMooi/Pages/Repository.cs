@@ -101,11 +101,6 @@ namespace OkMooi
         }
 
 
-        List<string> username = new List<string>();
-        List<string> commenttime = new List<string>();
-        List<string> title = new List<string>();
-        List<string> comments = new List<string>();
-
 
         public Comments displayComment(Comments comment)
         {
@@ -114,15 +109,6 @@ namespace OkMooi
             var connection = Connect();
             Comments displayedComment = connection.QueryFirstOrDefault<Comments>
                 ("select username, postedtime, messagename, Comment from comments order by Comment_ID desc;");
-
-            username.Add(new ("placeholder"));
-            username.Add(new ("placeholder2"));
-            commenttime.Add(new ("placeholder"));
-            commenttime.Add(new ("placeholder2"));
-            title.Add(new ("placeholder"));
-            title.Add(new ("placeholder2"));
-            comments.Add(new ("placeholder"));
-            comments.Add(new ("placeholder2"));
 
             return displayedComment;
         }
