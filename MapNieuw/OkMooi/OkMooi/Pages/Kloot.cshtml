@@ -14,13 +14,13 @@
 
     @if (@Model.aars != null)
     {
-        <form method="post" asp-for=user asp-page-handler="Boekjes">
+    <form method="post" asp-page-handler="Boekjes">
 
+        <input asp-for="Bookmark.Username">
+        
+        <button type="submit">Log In</button>
 
-            <input type="checkbox" asp-for="bookmark" />
-            <button type="submit">Log In</button>
-
-        </form>
+    </form>
     }
 
     <img src="https://i.picsum.photos/id/100/2500/1656.jpg?hmac=gWyN-7ZB32rkAjMhKXQgdHOIBRHyTSgzuOK6U0vXb1w" alt="Beach" class="center" height="450">

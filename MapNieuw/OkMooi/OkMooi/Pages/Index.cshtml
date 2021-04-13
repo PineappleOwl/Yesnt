@@ -16,7 +16,7 @@
     <form method="post" asp-page-handler="ProcessLogin">
 
         <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
-        <input type="password" placeholder="Wachtwoord" asp-for="NewUser.Password" />
+        <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" />
         <button type="submit">Log In</button>
 
     </form>
@@ -27,7 +27,7 @@
     <form method="post" asp-page-handler="Create">
 
         <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
-        <input type="password" placeholder="Wachtwoord" asp-for="NewUser.Password" />
+        <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" />
         <input type="checkbox" asp-for="NewUser.Admin">
         <button type="submit">Register</button>
 

@@ -17,7 +17,7 @@ namespace OkMooi.Pages
 
         [BindProperty] public string aars { get; set; }
         [BindProperty] public string bookmark { get; set; }
-        [BindProperty] public User apen { get; set; }
+        
         [BindProperty] public User Bookmark { get; set; }
         [BindProperty] public string doos { get; set; }
 
@@ -45,32 +45,32 @@ namespace OkMooi.Pages
             string buttonpoep = HttpContext.Session.GetString("LoginSession");
             aars = buttonpoep;
         }
-                                                                               
-        public User Bookmarkp(User user)
+
+        public User Bookmarkp(string username, string bookmark)
         {
             using var connection = Connect();
-            User bookmark = connection.QuerySingleOrDefault<User>(@"
-                UPDATE user SET bookmark = 'Molshoop' WHERE username= @Username", user
+            User result = connection.QuerySingleOrDefault<User>(@"
+                UPDATE user SET bookmark = @Bookmark WHERE username= @Username", new { Username = username, Bookmark = bookmark }
             );
-             
-            return bookmark;
+
+            return result;
         }
 
         public IActionResult OnPostBoekjes()
         {
             
-            apen.Username = bookmark;
-            Bookmark.Username = HttpContext.Session.Get("LoginSession").ToString();
             
-            if (!ModelState.IsValid)
-            {
-                new Kloot().Bookmarkp(Bookmark);
+            string username = HttpContext.Session.GetString("LoginSession");
+            
+            
+            
+                new Kloot().Bookmarkp(username, nameof(Kloot));
                 return RedirectToPage("Kloot");
                 //do something useful with addedTodo
-            }
+            
             
 
-            return Page();
+            
         }
 
         public void OnPostVerifyUser()
@@ -86,26 +86,14 @@ namespace OkMooi.Pages
             }
         }
 
-        public IActionResult OnPostBookmark()
-        {
-            apen.Username = bookmark;
-            var boekmark = new Kloot().Bookmarkp(Bookmark);
-            if (ModelState.IsValid)
-            {
-                
-                
-                new Kloot().Bookmarkg(bookmark);              
-            }
+       
 
-            return Page();
-        }
-
-        private IActionResult Bookmarkg(string bookmark)
-        {
-            apen.Username = bookmark;
-            var boekmark = new Kloot().Bookmarkp(Bookmark);
-            return Page();
+        //private iactionresult bookmarkg(string bookmark)
+        //{
+        //    apen.username = bookmark;
+        //    var boekmark = new kloot().bookmarkp(bookmark);
+        //    return page();
             
-        }
+        //}
     }
 }
