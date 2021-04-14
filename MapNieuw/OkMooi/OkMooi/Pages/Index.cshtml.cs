@@ -27,6 +27,7 @@ namespace OkMooi.Pages
 
         }
 
+        //handler for creating new users when register button is clicked
         public IActionResult OnPostCreate()
         {
             if (ModelState.IsValid)
@@ -38,17 +39,7 @@ namespace OkMooi.Pages
             return Page();
         }
 
-
-
-
-        public IEnumerable<User> Users
-        {
-            get { return new Repository().Get(); }
-        }
-
-
-
-        
+        //if user clicks on loginbutton checks if its correct and checks with database
         public IActionResult OnPostProcessLogin()
         {
             if(ModelState.IsValid)
@@ -69,6 +60,7 @@ namespace OkMooi.Pages
             return Page();
         }
 
+        //verifies user and gives it a sessionhandler
         public void OnPostVerifyUser()
         {
             if (new Repository().LogInUser(NewUser))

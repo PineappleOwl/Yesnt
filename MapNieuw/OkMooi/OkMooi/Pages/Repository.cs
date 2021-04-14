@@ -17,6 +17,8 @@ namespace OkMooi
     {
         [BindProperty]
         User UserById { get; set; }
+
+        //connectionstring to connect to database
         private IDbConnection Connect()
         {
             return new MySqlConnection(
@@ -27,7 +29,7 @@ namespace OkMooi
         }
 
 
-
+        //gets all users
         public User Get(string Username)
         {
             using var connection = Connect();
@@ -39,7 +41,7 @@ namespace OkMooi
         }
 
 
-
+        //adds new user to database
         public User AddUser(User user)
         {
             using var connection = Connect();
@@ -48,14 +50,19 @@ namespace OkMooi
                 , user);
             return addedTodo;
         }
-
-        internal IEnumerable<User> Get()
+        
+        
+        //puts bookmarks in database
+        public User Bookmarkp(string username, string bookmark)
         {
-            throw new NotImplementedException();
+            using var connection = Connect();
+            User result = connection.QuerySingleOrDefault<User>(@"
+                UPDATE user SET bookmark = @Bookmark WHERE username= @Username", new { Username = username, Bookmark = bookmark }
+            );
+
+            return result;
         }
-
-       
-
+        //gets user by the username (id sounds cooler)
         public User GetUserByUserID(string username)
         {
             var connection = Connect();
@@ -70,7 +77,7 @@ namespace OkMooi
             }
             return null;
         }
-
+        //logs in the user if password and username is correct
         public bool LogInUser(User user)
         {
             var connection = Connect();
@@ -106,7 +113,7 @@ namespace OkMooi
         List<string> title = new List<string>();
         List<string> comments = new List<string>();
 
-
+        //displays the comments
         public Comments displayComment(Comments comment)
         {
             
