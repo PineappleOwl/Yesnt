@@ -9,7 +9,7 @@
 @inject IWebHostEnvironment env
 
 <body>
-
+    
 
     <h3>Login</h3>
 
@@ -27,8 +27,7 @@
     <form method="post" asp-page-handler="Create">
 
         <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
-        <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" />
-        <input type="checkbox" asp-for="NewUser.Admin">
+        <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" /> 
         <button type="submit">Register</button>
 
     </form>

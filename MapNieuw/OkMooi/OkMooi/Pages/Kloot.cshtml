@@ -7,20 +7,21 @@
     <link href="StyleSheet.css" rel="Stylesheet.css" type="text/css" />
 
     
-    <h1>Wall-E</h1>
+    
 </head>
 <body>
-    
+    <h1>Wall-E</h1>
+
 
     @if (@Model.aars != null)
     {
-    <form method="post" asp-page-handler="Boekjes">
+        <form method="post" asp-page-handler="Boekjes">
 
-        <input asp-for="Bookmark.Username">
-        
-        <button type="submit">Log In</button>
+            
 
-    </form>
+            <button type="submit">Bookmark</button>
+
+        </form>
     }
 
     <img src="https://i.picsum.photos/id/100/2500/1656.jpg?hmac=gWyN-7ZB32rkAjMhKXQgdHOIBRHyTSgzuOK6U0vXb1w" alt="Beach" class="center" height="450">
