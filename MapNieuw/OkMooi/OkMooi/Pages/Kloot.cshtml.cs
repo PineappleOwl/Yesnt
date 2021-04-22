@@ -48,6 +48,11 @@ namespace OkMooi.Pages
 
         }
 
+        public IActionResult OnPostVolgende()
+        {
+            return RedirectToPage("Comments");
+        }
+
         //verifies user
         public void OnPostVerifyUser()
         {

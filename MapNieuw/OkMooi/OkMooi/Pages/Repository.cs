@@ -108,16 +108,16 @@ namespace OkMooi
         }
 
 
-<<<<<<< HEAD
 
-=======
+
+
         List<string> username = new List<string>();
         List<string> commenttime = new List<string>();
         List<string> title = new List<string>();
         List<string> comments = new List<string>();
 
         //displays the comments
->>>>>>> Shitfuck
+ 
         public Comments displayComment(Comments comment)
         {
             
