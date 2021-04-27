@@ -19,5 +19,15 @@ namespace OkMooi.Pages
         public string Admin { get; set; }
 
         public string Bookmark { get; set; }
+
+        [Required(), MinLength(2), MaxLength(50)]
+
+        public string Name { get; set; }
+
+        [Required(), MinLength(2), MaxLength(200)]
+
+        public string Comment { get; set; }
+
+        public string Time { get; set; }
     }
 }

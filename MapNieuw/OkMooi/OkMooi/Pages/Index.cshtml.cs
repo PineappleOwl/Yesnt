@@ -42,8 +42,8 @@ namespace OkMooi.Pages
         //if user clicks on loginbutton checks if its correct and checks with database
         public IActionResult OnPostProcessLogin()
         {
-            if(ModelState.IsValid)
-            {
+            
+            
                 var loggedinUser = new Repository().LogInUser(NewUser);
                 if(loggedinUser)
                 {
@@ -55,7 +55,7 @@ namespace OkMooi.Pages
                 {
                     ModelState.AddModelError("LoginError", "Error, debiel");
                 }
-            }
+            
 
             return Page();
         }

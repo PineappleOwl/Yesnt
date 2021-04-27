@@ -1,0 +1,20 @@
+﻿@page
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
+@model OkMooi.Pages.BanaanModel
+@{
+}
+
+@inject IWebHostEnvironment env
+
+<div class="forum">
+    <h3>Voeg comment toe </h3>
+    <form method="post" asp-page-handler="Comment">
+        <h5>Comment naam</h5>
+        <input type="text" asp-for="NewUser.Name" />
+        <h5>De epische comment</h5>
+        <input type="text" asp-for="NewUser.Comment" />
+        <button type="submit">Kies</button>
+
+    </form>
+</div>

@@ -107,6 +107,15 @@ namespace OkMooi
             return addedComment;
         }
 
+        public int NewComment(User user)
+        {
+            using var connection = Connect();
+            int AddThem = connection.Execute("INSERT INTO comments(messagename, postedtime, username, reaction, reacted, Comment)" +
+                " VALUES (@Name , 'poep', @Username, '1', '1', @Comment) ", user);
+            return AddThem;
+
+                
+        }
 
 
 
