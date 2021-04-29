@@ -95,7 +95,7 @@ namespace OkMooi
 
         }
 
-        //to add a comment
+        //ricks poopy comments
         public Comments AddComment(Comments comment)
         {
             comment.Time = DateTime.Now.ToString("HH:mm dd MMM yyyy");
@@ -107,26 +107,36 @@ namespace OkMooi
             return addedComment;
         }
 
+        //How we insert comment in database
         public int NewComment(User user)
         {
+            user.Time = DateTime.Now.ToString("HH:mm dd MMM yyyy");
             using var connection = Connect();
             int AddThem = connection.Execute("INSERT INTO comments(messagename, postedtime, username, reaction, reacted, Comment)" +
-                " VALUES (@Name , 'poep', @Username, '1', '1', @Comment) ", user);
+                " VALUES (@Name , @Time, @Username, '1', '1', @Comment) ", user);
             return AddThem;
 
                 
         }
 
+        //How we display our comments
+        public IEnumerable<User> GetComments()
+        {
+            using var connection = Connect();
+            var comments = connection
+                .Query<User>("SELECT * FROM comments") ;
+            return comments;
+        }
 
 
-
+        //idk what this shit is
         List<string> username = new List<string>();
         List<string> commenttime = new List<string>();
         List<string> title = new List<string>();
         List<string> comments = new List<string>();
 
-        //displays the comments
- 
+        
+        //Ricks poopy code 
         public Comments displayComment(Comments comment)
         {
             

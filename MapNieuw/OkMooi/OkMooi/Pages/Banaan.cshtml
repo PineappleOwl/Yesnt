@@ -7,6 +7,26 @@
 
 @inject IWebHostEnvironment env
 
+
+<ul>
+    @foreach (var user in @Model.Users)
+    {
+        <li>
+            @user.Name >> @user.Comment
+            <form method="post">
+                <button type="submit" asp-page-handler="Delete">Reply</button>
+
+            </form>
+
+        </li>
+    }
+</ul>
+
+
+
+
+
+
 <div class="forum">
     <h3>Voeg comment toe </h3>
     <form method="post" asp-page-handler="Comment">
