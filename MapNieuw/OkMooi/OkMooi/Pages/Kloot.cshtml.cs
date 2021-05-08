@@ -48,10 +48,7 @@ namespace OkMooi.Pages
 
         }
 
-        public IActionResult OnPostVolgende()
-        {
-            return RedirectToPage("Banaan");
-        }
+        
 
         //verifies user
         public void OnPostVerifyUser()

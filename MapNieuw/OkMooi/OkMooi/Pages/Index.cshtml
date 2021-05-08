@@ -10,7 +10,7 @@
 
 <body>
     
-
+    <div class="forum">
     <h3>Login</h3>
 
     <form method="post" asp-page-handler="ProcessLogin">
@@ -20,16 +20,18 @@
         <button type="submit">Log In</button>
 
     </form>
+    </div>
 
-    <h3>Register</h3>
+    <div class="forum">
+        <h3>Register</h3>
 
 
-    <form method="post" asp-page-handler="Create">
+        <form method="post" asp-page-handler="Create">
 
-        <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
-        <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" /> 
-        <button type="submit">Register</button>
+            <input type="text" placeholder="Gebruikersnaam" asp-for="NewUser.Username" />
+            <input type="text" placeholder="Wachtwoord" asp-for="NewUser.Password" />
+            <button type="submit">Register</button>
 
-    </form>
-
+        </form>
+    </div>
 </body>
